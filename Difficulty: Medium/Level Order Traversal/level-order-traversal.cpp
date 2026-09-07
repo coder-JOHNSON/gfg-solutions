@@ -16,19 +16,17 @@ class Solution {
   public:
     vector<int> levelOrder(Node *root) {
         // code here
-        queue<Node*>q;
-        vector<int>v;
-        if(root == nullptr) return v;
-        q.push(root);
-        while(!q.empty()){
-            Node *temp = q.front();  // Node *temp store address of node 
-            q.pop();
-            v.push_back(temp -> data);
-            
-            if(temp -> left != nullptr) q.push(temp -> left);
-            if(temp -> right != nullptr) q.push(temp -> right);
-
+        queue<Node*>dq;
+        vector<int> ans;
+        dq.push(root);
+        
+        while(dq.size() > 0){
+            Node *front = dq.front();
+            dq.pop();
+            ans.push_back(front -> data);
+            if(front -> left != NULL) dq.push(front -> left);
+            if(front -> right != NULL) dq.push(front -> right);
         }
-        return v;
+        return ans;
     }
 };
